@@ -60,9 +60,18 @@ var writeReadme = (response) => {
     );
 };
 var formatContent = (response) => {
-    return JSON.stringify(response);
+    const lineBreak = "<br />";
     //each part of response + make a table of contents
+    // let constructedString = "<h1>" + response.title + "</h1>" + lineBreak +
+    //     "<h2>Table of Contents</h2>" + lineBreak +
+    //     "<ul><li><a href='#description'>Description</a></li><li></li></ul>";
+    let constructedString = "# " + response.title + "  " +
+        "## Table of Contents  " +
+        "- [Code](#code)  " +
+        "- [Email](#email)  ";
     //license needs to be 'list of options'
     //Questions section
     // badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
+
+    return constructedString;
 }
