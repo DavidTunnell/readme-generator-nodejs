@@ -1,0 +1,14 @@
+{
+  "name": "readme-generator-nodejs",
+  "version": "1.0.0",
+  "description": "git@github.com:DavidTunnell/readme-generator-nodejs.git",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  }
+}
