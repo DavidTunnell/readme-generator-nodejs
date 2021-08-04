@@ -31,7 +31,7 @@ inquirer
     }, {
         type: 'input',
         message: 'Provide test instructions for the project.',
-        name: 'test'
+        name: 'tests'
     }, {
         type: 'input',
         message: 'Provide your GitHub user name.',
@@ -73,8 +73,18 @@ var formatContent = (response) => {
         "<li><a href='#tests'>Tests</a></li>" +
         "<li><a href='#questions'>Questions</a></li>" +
         "</ul>" +
-        "<h2>Installation</h2>" +
-        "<p>" + response.installation + "</p>" + lineBreak;
+        "<h2 id='installation'>Installation</h2>" +
+        "<p>" + response.installation + "</p>" + lineBreak +
+        "<h2 id='usage'>Usage</h2>" +
+        "<p>" + response.usage + "</p>" + lineBreak +
+        "<h2 id='license'>License</h2>" +
+        "<p>" + response.license + "</p>" + lineBreak +
+        "<h2 id='contributing'>Contributing</h2>" +
+        "<p>" + response.contribution + "</p>" + lineBreak +
+        "<h2 id='tests'>Tests</h2>" +
+        "<p>" + response.tests + "</p>" + lineBreak +
+        "<h2 id='questions'>Questions</h2>" +
+        "<p>" + response.github + response.email + "</p>" + lineBreak;
     //license needs to be 'list of options'
     //Questions section
     // badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
