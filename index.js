@@ -65,7 +65,7 @@ var formatContent = (response) => {
     //each part of response + make a table of contents
     let constructedString = "<h1>" + response.title + "</h1>" + lineBreak +
         "<h2>Description</h2>" + lineBreak +
-        "<p>" + "<img src='https://img.shields.io/badge/Apache-License%202.0%20-Blue'>" + "</p>" +
+        "<p>" + "<img src='https://img.shields.io/badge/" + formatForShieldCall(response.license) + "'>" + "</p>" +
         "<p>" + response.description + "</p>" + lineBreak +
         "<h2>Table of Contents</h2>" + lineBreak +
         "<ul><li><a href='#installation'>Installation</a></li>" +
@@ -94,3 +94,18 @@ var formatContent = (response) => {
 
     return constructedString;
 }
+
+var formatForShieldCall = (str) => {
+    const arrayOfWords = str.replace(/-/g, ' ').split(" ");
+    let formattedString = arrayOfWords[0] + "-";
+    for (let i = 1; i < arrayOfWords.length; i++) {
+        formattedString += arrayOfWords[i] + "%20";
+    }
+    formattedString += "-Blue";
+    //first word 
+    //dash -
+
+    //replace all spaces with: %20
+    // dash blue -blue
+    return formattedString;
+};
