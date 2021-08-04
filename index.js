@@ -44,7 +44,7 @@ inquirer
     .then((response) => {
         // Use user feedback for... whatever!!
         console.log(response);
-        writeReadme(response);
+        writeReadme(fileName, response);
     })
     .catch((error) => {
         if (error.isTtyError) {
@@ -54,21 +54,27 @@ inquirer
         }
     });
 
-var writeReadme = (response) => {
+var writeReadme = (fileName, response) => {
     fs.writeFile(fileName, formatContent(response), (err) =>
-        err ? console.error(err) : console.log('Success!')
+        err ? console.error(err) : console.log('Successfully printed: ' + fileName)
     );
 };
 var formatContent = (response) => {
     const lineBreak = "<br />";
     //each part of response + make a table of contents
     let constructedString = "<h1>" + response.title + "</h1>" + lineBreak +
+        "<h2>Description</h2>" + lineBreak +
+        "<p>" + response.description + "</p>" + lineBreak +
         "<h2>Table of Contents</h2>" + lineBreak +
-        "<ul><li><a href='#description'>Description</a></li><li></li></ul>";
-    // let constructedString = "# " + response.title + "\\" +
-    //     "## Table of Contents\\" +
-    //     "- [Code](#code)\\" +
-    //     "- [Email](#email)";
+        "<ul><li><a href='#installation'>Installation</a></li>" +
+        "<li><a href='#usage'>Usage</a></li>" +
+        "<li><a href='#license'>License</a></li>" +
+        "<li><a href='#contributing'>Contributing</a></li>" +
+        "<li><a href='#tests'>Tests</a></li>" +
+        "<li><a href='#questions'>Questions</a></li>" +
+        "</ul>" +
+        "<h2>Installation</h2>" +
+        "<p>" + response.installation + "</p>" + lineBreak;
     //license needs to be 'list of options'
     //Questions section
     // badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
