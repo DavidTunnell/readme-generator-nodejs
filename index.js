@@ -78,14 +78,14 @@ var writeReadme = (fileName, response) => {
 
 //construct HTML for the README file
 var formatContent = (response) => {
-    const lineBreak = "<br />";
-    //each part of response + make a table of contents
+    //get the url for user selection
     const licenseUrl = licenses.find(x => x.name === response.license).url;
-    let constructedString = "<h1>" + response.title + "</h1>" + lineBreak +
-        "<h2>Description</h2>" + lineBreak +
-        "<p>" + "<a href='" + licenseUrl + "'><img src='https://img.shields.io/badge/" + formatForShieldCall(response.license) + "'></a></p>" +
-        "<p>" + response.description + "</p>" + lineBreak +
-        "<h2>Table of Contents</h2>" + lineBreak +
+    //each part of response + make a table of contents
+    let constructedString = "<h1>" + response.title + "</h1>" +
+        "<h2>Description</h2>" +
+        "<p>" + "<a href='" + licenseUrl + "' target='_blank'><img src='https://img.shields.io/badge/" + formatForShieldCall(response.license) + "'></a></p>" +
+        "<p>" + response.description + "</p>" +
+        "<h2>Table of Contents</h2>" +
         "<ul><li><a href='#installation'>Installation</a></li>" +
         "<li><a href='#usage'>Usage</a></li>" +
         "<li><a href='#license'>License</a></li>" +
@@ -93,15 +93,15 @@ var formatContent = (response) => {
         "<li><a href='#tests'>Tests</a></li>" +
         "<li><a href='#questions'>Questions</a></li></ul>" +
         "<h2 id='installation'>Installation</h2>" +
-        "<p>" + response.installation + "</p>" + lineBreak +
+        "<p>" + response.installation + "</p>" +
         "<h2 id='usage'>Usage</h2>" +
-        "<p>" + response.usage + "</p>" + lineBreak +
+        "<p>" + response.usage + "</p>" +
         "<h2 id='license'>License</h2>" +
-        "<p><a href='" + licenseUrl + "'>" + response.license + "</a></p>" + lineBreak +
+        "<p><a href='" + licenseUrl + "' target='_blank'>" + response.license + "</a></p>" +
         "<h2 id='contributing'>Contributing</h2>" +
-        "<p>" + response.contribution + "</p>" + lineBreak +
+        "<p>" + response.contribution + "</p>" +
         "<h2 id='tests'>Tests</h2>" +
-        "<p>" + response.tests + "</p>" + lineBreak +
+        "<p>" + response.tests + "</p>" +
         "<h2 id='questions'>Questions</h2>" +
         "<p>Do you have any questions or comments?</p>" +
         "<ul><li>GitHub Profile: <a href='https://github.com/" + response.github + "'>" + response.github + "</a></li>" +
