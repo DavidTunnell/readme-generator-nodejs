@@ -20,43 +20,49 @@ const licenses = [{ name: 'Apache License 2.0', url: "https://opensource.org/lic
 //prompt users for questions regarding the readme file generation
 inquirer
     .prompt([{
-        type: 'input',
-        message: 'Provide a title for the project.',
-        name: 'title'
-    }, {
-        type: 'input',
-        message: 'Provide a description of the project.',
-        name: 'description'
-    }, {
-        type: 'input',
-        message: 'Provide installation instructions for the project.',
-        name: 'installation'
-    }, {
-        type: 'input',
-        message: 'Provide usage information for the project.',
-        name: 'usage'
-    }, {
-        type: 'list',
-        message: 'Provide which open source license type the project will use.',
-        name: 'license',
-        choices: licenses
-    }, {
-        type: 'input',
-        message: 'Provide contribution guidelines for the project.',
-        name: 'contribution'
-    }, {
-        type: 'input',
-        message: 'Provide test instructions for the project.',
-        name: 'tests'
-    }, {
-        type: 'input',
-        message: 'Provide your GitHub user name.',
-        name: 'github'
-    }, {
-        type: 'input',
-        message: 'Provide your email address.',
-        name: 'email'
-    }])
+            type: 'input',
+            message: 'Provide a title for the project.',
+            name: 'title'
+        }, {
+            type: 'input',
+            message: 'Provide a description of the project.',
+            name: 'description'
+        }, {
+            type: 'input',
+            message: 'Provide installation instructions for the project.',
+            name: 'installation'
+        }, {
+            type: 'input',
+            message: 'Provide usage information for the project.',
+            name: 'usage'
+        }, {
+            type: 'list',
+            message: 'Provide which open source license type the project will use.',
+            name: 'license',
+            choices: licenses
+        }, {
+            type: 'input',
+            message: 'Provide contribution guidelines for the project.',
+            name: 'contribution'
+        }, {
+            type: 'input',
+            message: 'Provide test instructions for the project.',
+            name: 'tests'
+        }, {
+            type: 'input',
+            message: 'Provide your GitHub user name.',
+            name: 'github'
+        }, {
+            type: 'input',
+            message: 'Provide your email address.',
+            name: 'email'
+        },
+        {
+            type: 'input',
+            message: 'Provide a relative URL to a screenshot.',
+            name: 'screenshot'
+        }
+    ])
     .then((response) => {
         // format and write file
         writeReadme(fileName, response);
@@ -83,7 +89,7 @@ var formatContent = (response) => {
     //each part of response + make a table of contents
     let constructedString = "<h1>" + response.title + "</h1>" +
         "<h2>Description</h2>" +
-        "<p>" + "<a href='" + licenseUrl + "' target='_blank'><img src='https://img.shields.io/badge/" + formatForShieldCall(response.license) + "'></a></p>" +
+        "<p>" + "<a href='" + licenseUrl + "'><img src='https://img.shields.io/badge/" + formatForShieldCall(response.license) + "'></a></p>" +
         "<p>" + response.description + "</p>" +
         "<h2>Table of Contents</h2>" +
         "<ul><li><a href='#installation'>Installation</a></li>" +
@@ -97,7 +103,7 @@ var formatContent = (response) => {
         "<h2 id='usage'>Usage</h2>" +
         "<p>" + response.usage + "</p>" +
         "<h2 id='license'>License</h2>" +
-        "<p><a href='" + licenseUrl + "' target='_blank'>" + response.license + "</a></p>" +
+        "<p><a href='" + licenseUrl + "'>" + response.license + "</a></p>" +
         "<h2 id='contributing'>Contributing</h2>" +
         "<p>" + response.contribution + "</p>" +
         "<h2 id='tests'>Tests</h2>" +
@@ -105,7 +111,9 @@ var formatContent = (response) => {
         "<h2 id='questions'>Questions</h2>" +
         "<p>Do you have any questions or comments?</p>" +
         "<ul><li>GitHub Profile: <a href='https://github.com/" + response.github + "'>" + response.github + "</a></li>" +
-        "<li>Email: <a href='mailto: " + response.email + "'>" + response.email + "</a></li></ul>";
+        "<li>Email: <a href='mailto: " + response.email + "'>" + response.email + "</a></li></ul>" +
+        "<h2>Screenshot</h2>" +
+        "<img src='" + response.screenshot + "'>";
     return constructedString;
 }
 
