@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 //set file name that will be written
-const fileName = "README_test.md";
+const fileName = "README.md";
 
 //license choices and details
 const licenses = [{ name: 'Apache License 2.0', url: "https://opensource.org/licenses/Apache-2.0" },
@@ -17,7 +17,7 @@ const licenses = [{ name: 'Apache License 2.0', url: "https://opensource.org/lic
     { name: 'Eclipse Public License version 2.0', url: "https://opensource.org/licenses/EPL-2.0" }
 ];
 
-//prompt users for questions regarding the readme file generation
+//prompt users for questions regarding the readme file generation ./assets/screenshot.png
 inquirer
     .prompt([{
             type: 'input',
@@ -84,7 +84,7 @@ var writeReadme = (fileName, response) => {
 
 //construct HTML for the README file
 var formatContent = (response) => {
-    //get the url for user selection
+    //get the url for user selection - https://stackoverflow.com/questions/13964155/get-javascript-object-from-array-of-objects-by-value-of-property
     const licenseUrl = licenses.find(x => x.name === response.license).url;
     //each part of response + make a table of contents
     let constructedString = "<h1>" + response.title + "</h1>" +
